@@ -17,7 +17,7 @@ exports.getBook = async (req, res) => {
 exports.getBookID = async (req, res) => {
   try {
     const { id } = req.params;
-    const response = await Book.findOne({ where: { id: id } });
+    const response = await Book.findOne({ include: {model : Genre, attributes: ['id', 'name']}, where: { id: id } });
     if (!response) {
       return res.status(404).json({ message: `Book Not Found`, status: 404 });
     }
