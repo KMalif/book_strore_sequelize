@@ -1,14 +1,14 @@
 const { Transaction, Book, Book_Genre } = require("../models");
 const joi = require("joi");
 
-exports.getTransaction = async (req, res) => {
+exports.getTransaction = async (req, res) => {  
   try {
     const response = await Transaction.findAll({
       include: "transactionBook",
     });
-    res.status(200).json({ data: response, message: "Success" });
+    res.status(200).json({ message: "Success Get all Transaction", status: 200, data: response });
   } catch (error) {
-    res.status(500).json({ status: "Error", message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error", status: 500 });
   }
 };
 
@@ -25,16 +25,16 @@ exports.createTransaction = async (req, res) => {
 
     const { error } = scheme.validate(newData);
     if (error) {
-      return res.status(400).json({ status: "Validation Failed", message: error.details[0].message });
+      return res.status(400).json({ message: error.details[0].message, status: 400 });
     }
 
     for (const bookID of bookIDs) {
       const existingBook = await Book.findOne({ where: { id: bookID } });
       if (!existingBook) {
-        return res.status(404).json({ message: `Book with ID ${bookID} not found...` });
+        return res.status(404).json({ message: `Book with ID ${bookID} not found`, status: 400 });
       }
       if (existingBook.transactionID !== null) {
-        return res.status(400).json({ message: `Book with ID ${bookID} sold out...` });
+        return res.status(400).json({ message: `Book with ID ${bookID} sold out` });
       }
     }
 
@@ -45,9 +45,9 @@ exports.createTransaction = async (req, res) => {
       await Book.update({ transactionID: newTransactionId }, { where: { id: bookID } });
     }
 
-    res.status(201).json({ message: "Transaction Created..." });
+    res.status(201).json({ message: "Transaction Created", status: 201 });
   } catch (error) {
-    res.status(500).json({ status: "Error", message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error", status: 500 });
   }
 };
 
@@ -58,9 +58,9 @@ exports.getTransactionID = async (req, res) => {
     if (!response) {
       return res.status(404).json({ message: `Transaction Not Found` });
     }
-    res.status(200).json({ data: response, message: "Success" });
+    res.status(200).json({ message: "Success get Transaction", status: 200, data: response });
   } catch (error) {
-    res.status(500).json({ status: "Error", message: "Internal server error" });
+    res.status(500).json({ status: 500, message: "Internal server error" });
   }
 };
 
@@ -83,8 +83,8 @@ exports.deleteTransaction = async (req, res) => {
 
     await Transaction.destroy({ where: { id: id } });
 
-    res.status(200).json({ message: "Transaction have been deleted" });
+    res.status(200).json({ message: "Transaction have been deleted", status: 200 });
   } catch (error) {
-    res.status(500).json({ status: "Error", message: "Internal server error" });
+    res.status(500).json({ status: 500, message: "Internal server error" });
   }
 };

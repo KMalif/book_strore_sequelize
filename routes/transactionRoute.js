@@ -4,7 +4,7 @@ const { getTransaction, createTransaction, getTransactionID, deleteTransaction }
 
 router.get("/", getTransaction);
 router.get("/:id", getTransactionID);
-router.post("/create", createTransaction);
-router.delete("/delete/:id", deleteTransaction);
+router.post("/", createTransaction);
+router.delete("/:id", deleteTransaction);
 
 module.exports = router;

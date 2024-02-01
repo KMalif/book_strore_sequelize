@@ -1,13 +1,16 @@
 const { Book } = require("../models");
 const { Book_Genre } = require("../models");
+const { Genre } = require("../models");
 const joi = require("joi");
 
 exports.getBook = async (req, res) => {
   try {
-    const response = await Book.findAll();
-    res.status(200).json({ data: response, message: "Success" });
+    const response = await Book.findAll({
+      include: {model : Genre, attributes: ['id', 'name']},
+    });
+    res.status(200).json({ message: "Success get all Books", status: 200, data: response });
   } catch (error) {
-    res.status(500).json({ status: "Error", message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error", status: 500 });
   }
 };
 
@@ -16,9 +19,9 @@ exports.getBookID = async (req, res) => {
     const { id } = req.params;
     const response = await Book.findOne({ where: { id: id } });
     if (!response) {
-      return res.status(404).json({ message: `Book Not Found` });
+      return res.status(404).json({ message: `Book Not Found`, status: 404 });
     }
-    res.status(200).json({ data: response, message: "Success" });
+    res.status(200).json({ message: "Success", status: 200, data: response });
   } catch (error) {
     res.status(500).json({ status: "Error", message: "Internal server error" });
   }
@@ -37,12 +40,12 @@ exports.createBook = async (req, res) => {
 
     const { error } = scheme.validate(newData);
     if (error) {
-      return res.status(400).json({ status: "Validation Failed", message: error.details[0].message });
+      return res.status(400).json({ message: error.details[0].message, status: 400 });
     }
 
     const existingBook = await Book.findOne({ where: { name: newData.name } });
     if (existingBook) {
-      return res.status(400).json({ message: `Book with name ${newData.name} already exist...` });
+      return res.status(400).json({ message: `Book with name ${newData.name} already exist`, status: 400 });
     }
 
     const newBook = await Book.create(newData);
@@ -56,9 +59,9 @@ exports.createBook = async (req, res) => {
       await Book_Genre.create(bookGenre);
     }
 
-    res.status(201).json({ message: "Book Created..." });
+    res.status(201).json({ message: "Book Created", status: 201});
   } catch (error) {
-    res.status(500).json({ status: "Error", message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error", status: 500 });
   }
 };
 
@@ -72,7 +75,7 @@ exports.editBook = async (req, res) => {
     });
     const { error } = scheme.validate(newData);
     if (error) {
-      return res.status(400).json({ status: "Validation Failed", message: error.details[0].message });
+      return res.status(400).json({ message: error.details[0].message, status: 400 });
     }
 
     const selectedBook = await Book.findOne({ where: { id: id } });
@@ -80,12 +83,12 @@ exports.editBook = async (req, res) => {
       return res.status(404).json({ message: `Book Not Found` });
     }
     if (selectedBook.transactionID) {
-      return res.status(400).json({ message: `Book with name ${selectedBook.name} sold out...` });
+      return res.status(400).json({ message: `Book with name ${selectedBook.name} sold out`, status: 400 });
     }
     const updatedBook = await Book.update(newData, { where: { id: id } });
 
-    res.status(200).json({ message: "Book Updated..." });
+    res.status(200).json({ message: "Book Updated" });
   } catch (error) {
-    res.status(500).json({ status: "Error", message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error", status: 500 });
   }
 };
