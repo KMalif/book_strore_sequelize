@@ -2,6 +2,7 @@ const { Book } = require("../models");
 const { Book_Genre } = require("../models");
 const { Genre } = require("../models");
 const joi = require("joi");
+const { verifyToken } = require("../utils/jwtUtils");
 
 exports.getBook = async (req, res) => {
   try {

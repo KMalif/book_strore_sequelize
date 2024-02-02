@@ -1,0 +1,385 @@
+{
+	"info": {
+		"_postman_id": "344a16c4-7115-4b16-b460-50707f7bb07a",
+		"name": "Books Store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13581754"
+	},
+	"item": [
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "[GET] getAllBooks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url3000}}/api/book",
+							"host": [
+								"{{url3000}}"
+							],
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[POST] post-book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJraGFmaWR1bG11YWxpZkBnbWFpbC5jb20iLCJpYXQiOjE3MDY4NjEyMzV9.wBgO5J0xxyHzd5B_FFRe5Rvrx29kduHCGJGpC3DRAgo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Harry Potter and the Goblet of Fire\",\r\n    \"description\" : \"Harry Potter adalah seri tujuh novel fantasi yang dikarang oleh penulis Inggris J. K. Rowling. Novel ini mengisahkan tentang petualangan seorang penyihir remaja bernama Harry Potter dan sahabatnya, Ron Weasley dan Hermione Granger, yang merupakan pelajar di Sekolah Sihir Hogwarts.\",\r\n    \"genreIDs\" : [2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url3000}}/api/book",
+							"host": [
+								"{{url3000}}"
+							],
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[PATCH] Update-book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJraGFmaWR1bG11YWxpZkBnbWFpbC5jb20iLCJpYXQiOjE3MDY4NjEyMzV9.wBgO5J0xxyHzd5B_FFRe5Rvrx29kduHCGJGpC3DRAgo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Harry Potter and the Goblet of Fire Update\",\r\n    \"description\" : \"Harry Potter adalah seri tujuh novel fantasi yang dikarang oleh penulis Inggris J. K. Rowling. Novel ini mengisahkan tentang petualangan seorang penyihir remaja bernama Harry Potter dan sahabatnya, Ron Weasley dan Hermione Granger, yang merupakan pelajar di Sekolah Sihir Hogwarts.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url3000}}/api/book/2",
+							"host": [
+								"{{url3000}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] get-detailBook",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url3000}}/api/book/1",
+							"host": [
+								"{{url3000}}"
+							],
+							"path": [
+								"api",
+								"book",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Genre",
+			"item": [
+				{
+					"name": "[POST] Add Genre",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJraGFmaWR1bG11YWxpZkBnbWFpbC5jb20iLCJpYXQiOjE3MDY4NjEyMzV9.wBgO5J0xxyHzd5B_FFRe5Rvrx29kduHCGJGpC3DRAgo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Novel\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url3000}}/api/genre",
+							"host": [
+								"{{url3000}}"
+							],
+							"path": [
+								"api",
+								"genre"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] Get-genre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url3000}}/api/genre",
+							"host": [
+								"{{url3000}}"
+							],
+							"path": [
+								"api",
+								"genre"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "[POST] Add-Transaction",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJraGFmaWR1bG11YWxpZkBnbWFpbC5jb20iLCJpYXQiOjE3MDY4NjEyMzV9.wBgO5J0xxyHzd5B_FFRe5Rvrx29kduHCGJGpC3DRAgo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"buyerName\": \"newUser\",\r\n    \"email\": \"newUser@gmail.com\",\r\n    \"phoneNumber\": \"08522615340\",\r\n    \"bookIDs\": [2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url3000}}/api/transaction",
+							"host": [
+								"{{url3000}}"
+							],
+							"path": [
+								"api",
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] get-transaction",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJraGFmaWR1bG11YWxpZkBnbWFpbC5jb20iLCJpYXQiOjE3MDY4NjEyMzV9.wBgO5J0xxyHzd5B_FFRe5Rvrx29kduHCGJGpC3DRAgo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url3000}}/api/transaction",
+							"host": [
+								"{{url3000}}"
+							],
+							"path": [
+								"api",
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "[POST] Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Khafidul\",\r\n    \"lastName\": \"Mualif\",\r\n    \"email\": \"khafidulmualif@gmail.com\",\r\n    \"password\": \"cobaaja123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url3000}}/api/user/signup",
+							"host": [
+								"{{url3000}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[POST] Signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"khafidulmualif@gmail.com\",\r\n    \"password\": \"cobaaja123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url3000}}/api/user/signin",
+							"host": [
+								"{{url3000}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] get-profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJraGFmaWR1bG11YWxpZkBnbWFpbC5jb20iLCJpYXQiOjE3MDY4NjEyMzV9.wBgO5J0xxyHzd5B_FFRe5Rvrx29kduHCGJGpC3DRAgo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url3000}}/api/user/profile",
+							"host": [
+								"{{url3000}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[PATCH] Change-password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJraGFmaWR1bG11YWxpZkBnbWFpbC5jb20iLCJpYXQiOjE3MDY4NjEyMzV9.wBgO5J0xxyHzd5B_FFRe5Rvrx29kduHCGJGpC3DRAgo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\" : \"cobaaja123\",\r\n    \"verifyPassword\": \"cobaaja123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url3000}}/api/user/change-password",
+							"host": [
+								"{{url3000}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
